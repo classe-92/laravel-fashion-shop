@@ -29,7 +29,7 @@
                 <tr>
                     <th scope="row">{{ $product->id }}</th>
                     <td>{{ $product->name }}</td>
-                    <td><img class="img-thumbnail" style="width:100px" src="{{ $product->cover_image }}"
+                    <td><img class="img-thumbnail" style="width:100px" src="{{ asset('storage/' . $product->cover_image) }}"
                             alt="{{ $product->name }}">
                     </td>
                     <td>

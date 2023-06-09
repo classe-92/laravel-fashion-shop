@@ -2,17 +2,15 @@
 
 @section('content')
     <h1>{{ $product->name }}</h1>
-    {{-- @if (session()->has('message'))
+    @if (session()->has('message'))
         <div class="alert alert-success">
             {{ session()->get('message') }}
         </div>
     @endif
-    <h6>Category: {{ $post->category ? $post->category->name : 'Senza categoria' }}
-        </td>
-    </h6>
-    <img src="{{ $post->image }}" alt="{{ $post->title }}">
-    <p>{!! $post->body !!}</p>
-    @if ($post->tags && count($post->tags) > 0)
+    <h6>Category: {{ $product->category ? $product->category->name : 'Senza categoria' }}</h6>
+    <img src="{{ asset('storage/' . $product->cover_image) }}" alt="{{ $product->name }}">
+    <p>{!! $product->description !!}</p>
+    {{-- @if ($post->tags && count($post->tags) > 0)
         <div>
             @foreach ($post->tags as $tag)
                 <a href="{{ route('admin.tags.show', $tag->slug) }}"
