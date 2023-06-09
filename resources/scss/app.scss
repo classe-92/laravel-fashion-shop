@@ -1,0 +1,28 @@
+@use './partials/variables' as *;
+
+$fa-font-path: "../fonts/webfonts" !default;
+
+@import "~@fortawesome/fontawesome-free/scss/fontawesome";
+@import "~@fortawesome/fontawesome-free/scss/regular";
+@import "~@fortawesome/fontawesome-free/scss/solid";
+@import "~@fortawesome/fontawesome-free/scss/brands";
+@import "~bootstrap/scss/bootstrap";
+
+@import "./partials/mixins.scss";
+@import "./partials/global.scss";
+@import "./partials/utilities.scss";
+
+// Custom Components
+@import "./partials/dropdowns.scss";
+@import "./partials/navs.scss";
+@import "./partials/buttons.scss";
+@import "./partials/cards.scss";
+@import "./partials/charts.scss";
+@import "./partials/login.scss";
+@import "./partials/error.scss";
+@import "./partials/footer.scss";
+
+a{
+    text-decoration: none;
+    color: white;
+}
