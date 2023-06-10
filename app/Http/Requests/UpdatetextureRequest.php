@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdatetextureRequest extends FormRequest
+class UpdateTextureRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.

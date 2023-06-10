@@ -4,16 +4,16 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 
-use App\Models\brand;
-use App\Http\Requests\StorebrandRequest;
-use App\Http\Requests\UpdatebrandRequest;
+use App\Models\Brand;
+use App\Http\Requests\StoreBrandRequest;
+use App\Http\Requests\UpdateBrandRequest;
 
 class BrandController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     *
      */
     public function index()
     {
@@ -23,7 +23,7 @@ class BrandController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     *
      */
     public function create()
     {
@@ -33,10 +33,10 @@ class BrandController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StorebrandRequest  $request
-     * @return \Illuminate\Http\Response
+     * @param  \App\Http\Requests\StoreBrandRequest  $request
+     *
      */
-    public function store(StorebrandRequest $request)
+    public function store(StoreBrandRequest $request)
     {
         //
     }
@@ -44,10 +44,10 @@ class BrandController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\brand  $brand
-     * @return \Illuminate\Http\Response
+     * @param  \App\Models\Brand  $brand
+     *
      */
-    public function show(brand $brand)
+    public function show(Brand $brand)
     {
         //
     }
@@ -55,10 +55,10 @@ class BrandController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\brand  $brand
-     * @return \Illuminate\Http\Response
+     * @param  \App\Models\Brand  $brand
+     *
      */
-    public function edit(brand $brand)
+    public function edit(Brand $brand)
     {
         //
     }
@@ -66,11 +66,11 @@ class BrandController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdatebrandRequest  $request
-     * @param  \App\Models\brand  $brand
-     * @return \Illuminate\Http\Response
+     * @param  \App\Http\Requests\UpdateBrandRequest  $request
+     * @param  \App\Models\Brand  $brand
+     *
      */
-    public function update(UpdatebrandRequest $request, brand $brand)
+    public function update(UpdateBrandRequest $request, Brand $brand)
     {
         //
     }
@@ -78,10 +78,10 @@ class BrandController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\brand  $brand
-     * @return \Illuminate\Http\Response
+     * @param  \App\Models\Brand  $brand
+     *
      */
-    public function destroy(brand $brand)
+    public function destroy(Brand $brand)
     {
         //
     }

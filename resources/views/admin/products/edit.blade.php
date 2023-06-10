@@ -52,17 +52,18 @@
             @error('category_id')
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
-            <div class="mb-3">
-                <label for="body">Description</label>
-                <textarea name="description" id="body" rows="10"
-                    class="form-control @error('description') is-invalid @enderror">{{ old('description', $product->description) }}</textarea>
-                @error('description')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                @enderror
-            </div>
-            <div class="form-group">
-                <p>Seleziona i Colori:</p>
-                {{-- @foreach ($tags as $tag)
+        </div>
+        <div class="mb-3">
+            <label for="body">Description</label>
+            <textarea name="description" id="body" rows="10"
+                class="form-control @error('description') is-invalid @enderror">{{ old('description', $product->description) }}</textarea>
+            @error('description')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+        </div>
+        <div class="form-group">
+            <p>Seleziona i Colori:</p>
+            {{-- @foreach ($tags as $tag)
                     <div>
                         @if ($errors->any())
                             <input type="checkbox" name="tags[]" value="{{ $tag->id }}" class="form-check-input"
@@ -77,9 +78,9 @@
                 @error('tags')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror --}}
-            </div>
-            <button type="submit" class="btn btn-success">Save</button>
-            <button type="reset" class="btn btn-primary">Reset</button>
+        </div>
+        <button type="submit" class="btn btn-success">Save</button>
+        <button type="reset" class="btn btn-primary">Reset</button>
     </form>
     <script src="//js.nicedit.com/nicEdit-latest.js" type="text/javascript"></script>
     <script type="text/javascript">

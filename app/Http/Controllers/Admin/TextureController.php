@@ -4,16 +4,16 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 
-use App\Models\texture;
-use App\Http\Requests\StoretextureRequest;
-use App\Http\Requests\UpdatetextureRequest;
+use App\Models\Texture;
+use App\Http\Requests\StoreTextureRequest;
+use App\Http\Requests\UpdateTextureRequest;
 
 class TextureController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     *
      */
     public function index()
     {
@@ -23,7 +23,7 @@ class TextureController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     *
      */
     public function create()
     {
@@ -33,10 +33,10 @@ class TextureController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoretextureRequest  $request
-     * @return \Illuminate\Http\Response
+     * @param  \App\Http\Requests\StoreTextureRequest  $request
+     *
      */
-    public function store(StoretextureRequest $request)
+    public function store(StoreTextureRequest $request)
     {
         //
     }
@@ -45,9 +45,9 @@ class TextureController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Models\texture  $texture
-     * @return \Illuminate\Http\Response
+     *
      */
-    public function show(texture $texture)
+    public function show(Texture $texture)
     {
         //
     }
@@ -56,9 +56,9 @@ class TextureController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\texture  $texture
-     * @return \Illuminate\Http\Response
+     *
      */
-    public function edit(texture $texture)
+    public function edit(Texture $texture)
     {
         //
     }
@@ -66,11 +66,11 @@ class TextureController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdatetextureRequest  $request
-     * @param  \App\Models\texture  $texture
-     * @return \Illuminate\Http\Response
+     * @param  \App\Http\Requests\UpdateTextureRequest  $request
+     * @param  \App\Models\Texture  $texture
+     *
      */
-    public function update(UpdatetextureRequest $request, texture $texture)
+    public function update(UpdateTextureRequest $request, Texture $texture)
     {
         //
     }
@@ -78,10 +78,10 @@ class TextureController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\texture  $texture
-     * @return \Illuminate\Http\Response
+     * @param  \App\Models\Texture  $texture
+     *
      */
-    public function destroy(texture $texture)
+    public function destroy(Texture $texture)
     {
         //
     }
