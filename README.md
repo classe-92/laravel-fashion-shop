@@ -38,7 +38,7 @@ composer require pacificdev/laravel_9_preset
 #installiamo il pacchetto 
 php artisan preset:ui bootstrap --auth
 
-#modifichiamo app/Provoders/RouteServiceProvider.php con la nostra rotta dove andare dopo il login
+#modifichiamo app/Providers/RouteServiceProvider.php con la nostra rotta dove andare dopo il login
 public const HOME = '/admin';
 
 #lanciamo npm install
