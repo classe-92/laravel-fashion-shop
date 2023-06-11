@@ -23,3 +23,6 @@ class Product extends Model
         return $this->belongsTo(Texture::class);
     }
 }
+
+//return $this->belongsToMany(Role::class)->withPivot('active', 'created_by');
+//return $this->belongsToMany(Role::class)->withTimestamps();
