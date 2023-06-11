@@ -80,11 +80,17 @@ $fa-font-path: "../fonts/webfonts" !default;
 
 #prepara il file del layout e la welcome
 
+#creare database
+#inserire credenziali nel file .env
+#php artisan migrate per lanciare le migration già presenti che creeranno la tabella utenti ecc
+
 #verifichiamo che tutto funzioni:
 
 npm run dev
 
 php artisan serve
+
+#registriamo il primo user e proviamo la login
 
 ```
 ## Pubblicare su github
@@ -104,11 +110,24 @@ git push -u origin main
 ## Creo migration e seeder
 
 ```php
-#Creo database da phpmyadmin
+#Creo database da phpmyadmin  se non l'ho già fatto
 
-#Aggiungo configurazione a file .env
+#Aggiungo configurazione a file .env se non l'ho già fatto
 
-#creare le migration per le tabelle ecc
+#Posso creare model controller migration, seeder e request di validazione per le mie entità con un solo comando
+
+php artisan make:model Nomemodel -rcms --requests
+#in questo caso procedo completando le migration e lanciandole 
+#poi aggiungendo ai model creati $guarded o $fillable ed eventuali relazioni
+#poi completo i seeder e li lancio
+#poi compilo almeno la index dei vari controller
+#e preparo le views da ritornare
+#aggiungo le rotte necessarie al file web.php dentro la cartella routes
+#aggiungo evntuali link nella barra di navigazione per raggiungere la index delle risorse create
+#testo il tutto
+
+
+#altrimenti creare le migration da sole per le tabelle ecc 
 
 #per creazione:
 php artisan make:migration create_nometabella_table
