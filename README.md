@@ -7,32 +7,262 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About Laravel
+## Laravel inizializzazione progetto
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+```bash
+#apriamo la cartella parent
+cd your parent_folder_path
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+#creiamo il progetto
+composer create-project --prefer-dist laravel/laravel:^9.2 your_project_name_here
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+#entriamo nella cartella del progetto da terminale di vscode
+cd your_project_name
 
-## Learning Laravel
+#apriamo la cartella in vscode
+code . -r 
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+#Installare pacchetto per update migration:
+composer require doctrine/dbal
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+#scaricare pacchetto breeze  (opzione blade)
+composer require laravel/breeze:^1.18.0 --dev
 
-## Laravel Sponsors
+#installare breeze (opzione blade)
+php artisan breeze:install
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
 
-### Premium Partners
+#installiamo il pacchetto di inizializzazione ui con bootstrap
+composer require pacificdev/laravel_9_preset
 
+#installiamo il pacchetto 
+php artisan preset:ui bootstrap --auth
+
+#modifichiamo app/Provoders/RouteServiceProvider.php con la nostra rotta dove andare dopo il login
+public const HOME = '/admin';
+
+#lanciamo npm install
+npm install
+
+#installiamo fonawesome se serve
+npm install --save @fortawesome/fontawesome-free
+
+#modifichiamo vite.config.js per aggiungere alias fontawesome
+...
+ '~@fortawesome': path.resolve(__dirname, 'node_modules/@fortawesome'),
+...
+#creiamo le cartelle e i file necessari
+#dentro resources:
+fonts
+img
+
+#dentro resources>views:
+layouts > layout.blade.php
+partials > header.blade.php e footer.blade.php
+
+#dentro resources>scss:
+partials
+(inseriamo dentro partials almeno un file _varaibles.scss) 
+
+#copiamo la cartella dei webfont di fontawesome dentro fonts
+
+#editiamo il file app.scss
+@use './partials/variables' as *;
+
+$fa-font-path: "../fonts/webfonts" !default;
+
+@import "~@fortawesome/fontawesome-free/scss/fontawesome";
+@import "~@fortawesome/fontawesome-free/scss/regular";
+@import "~@fortawesome/fontawesome-free/scss/solid";
+@import "~@fortawesome/fontawesome-free/scss/brands";
+
+@import "~bootstrap/scss/bootstrap";
+
+#prepara il file del layout e la welcome
+
+#verifichiamo che tutto funzioni:
+
+npm run dev
+
+php artisan serve
+
+```
+## Pubblicare su github
+
+```
+#create project on github and follow instructions
+# add composer.lock and package.lock.json to .gitignore
+
+git init
+git add .
+git commit -m "first commit"
+git branch -M main
+git remote add origin your_git_url
+git push -u origin main
+
+```
+## Creo migration e seeder
+
+```php
+#Creo database da phpmyadmin
+
+#Aggiungo configurazione a file .env
+
+#creare le migration per le tabelle ecc
+
+#per creazione:
+php artisan make:migration create_nometabella_table
+
+#per aggiunta campo nome migration:
+php artisan make:migration add_momecampo_to_nometabella_table
+
+#per modifica campi e tabelle nome migration:
+php artisan make:migration update_nometabella_table --table=nometabella
+
+#dentro il file  migration 
+	public function up()
+	{
+		Schema::create('pastas', function (Blueprint $table) {
+			$table->id();
+			$table->string('title', 50);
+			$table->text('description')->nullable();
+			$table->string('type', 20);
+			$table->string('image');
+			$table->string('cooking_time', 20);
+			$table->string('weight', 20);
+			$table->timestamps();
+		});
+	}
+
+	public function down()
+	{
+		Schema::dropIfExists('pastas');
+	}
+#per lanciare le migration
+
+php artisan migrate
+
+#controllo su phpmyadmin se c'è tutto
+#creo model per la tabella generata
+php artisan make:model Nometabellasingolare
+
+#preparo il seeder didsolito es. PostSeeder
+
+php artisan make:seeder NomeSeeder 
+
+#apro il seeder e dentro c'è la funzione run()
+				$array_pasta = config('pasta');
+				foreach($array_pasta as $pasta_item) {
+						$new_pasta_object = new Pasta();
+						$new_pasta_object->title = $pasta_item['titolo'];
+						$new_pasta_object->description = $pasta_item['descrizione'];
+						$new_pasta_object->type = $pasta_item['tipo'];
+						$new_pasta_object->image = $pasta_item['src'];
+						$new_pasta_object->cooking_time = $pasta_item['cottura'];
+						$new_pasta_object->weight = $pasta_item['peso'];
+						$new_pasta_object->save();
+				}
+
+#lancio il seeder:
+
+php artisan db:seed --class=NomeClasseSeeder
+#controllo phpmyadmin se i dati sono inseriti
+
+#volendo aggiungo la classe del seedere a DabaseSeeeder aggiungendo nella funzione run ad es.:
+$this->call([
+	  PostTableSeeder::class,
+]);
+
+
+#creo controller correggo il file della rotta e stampo in pagina con le view
+
+```
+
+## Laravel clone progetto
+
+```Bash
+#clone repo from github
+
+composer install
+
+#fare copia del file .env.example e rinominarlo  in .env 
+cp .env.example .env
+
+php artisan key:generate
+
+npm install
+
+#creo db
+
+#modifico file env con nome DB e credenziali mysql
+
+npm run dev
+
+php artisan serve
+
+# lancio migration e seeder anche con un solo comando (se i seeder sono tutti presenti nell'array della dunzione run di DatabaseSeeder.php):
+
+php artisan migrate --seed
+
+```
+
+## File Storage
+```bash
+# Storage
+# in .env alla chiave FILESYSTEM_DISK
+FILESYSTEM_DISK=public
+
+# modificare config/filesystem.php
+ 'default' => env('FILESYSTEM_DISK', 'public'),
+
+# lanciare il comando per creare il simlink
+php artisan storage:link
+
+```
+
+## Laravel Resource
+```php
+#in routes web.php
+Route::resource('items', ItemController::class);
+
+```
+
+```bash
+#create model + resource controller, migration e seeder
+
+php artisan make:model Nomemodel -rcms --requests
+
+```
+
+## Customize pagination and errors page
+```bash
+# scaricare nella cartella views i template per la paginazione e gli errori per customizzarli
+php artisan vendor:publish --tag=laravel-errors
+
+php artisan vendor:publish --tag=laravel-pagination
+
+```
+## Generate unique slug
+
+```php
+# function to generate unique slug
+
+private function getSlug($title)
+    {
+        $slug = Str::of($title)->slug("-");
+        $count = 1;
+
+        // Prendi il primo post il cui slug è uguale a $slug
+        // se è presente allora genero un nuovo slug aggiungendo -$count
+        while( Post::where("slug", $slug)->first() ) {
+            $slug = Str::of($title)->slug("-") . "-{$count}";
+            $count++;
+        }
+
+        return $slug;
+    }
+
+```
 - **[Vehikl](https://vehikl.com/)**
 - **[Tighten Co.](https://tighten.co)**
 - **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
@@ -46,19 +276,5 @@ We would like to extend our thanks to the following sponsors for funding Laravel
 - **[OP.GG](https://op.gg)**
 - **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
 - **[Lendio](https://lendio.com)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
