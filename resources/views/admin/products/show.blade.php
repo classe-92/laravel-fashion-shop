@@ -10,6 +10,7 @@
     <h6>Category: {{ $product->category ? $product->category->name : 'Senza categoria' }}</h6>
     <h6>Brand: {{ $product->brand ? $product->brand->name : 'Senza Brand' }}</h6>
     <h6>Category: {{ $product->texture ? $product->texture->name : 'Senza texture' }}</h6>
+    <h6>Price: {{ $product->price }} &euro;</h6>
     <img src="{{ asset('storage/' . $product->cover_image) }}" alt="{{ $product->name }}">
     <p>{!! $product->description !!}</p>
     @if ($product->colors && count($product->colors) > 0)

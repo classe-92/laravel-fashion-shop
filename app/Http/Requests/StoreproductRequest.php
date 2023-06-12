@@ -26,11 +26,12 @@ class StoreProductRequest extends FormRequest
         return [
             'name' => 'required|unique:products|max:100|min:3',
             'description' => 'nullable',
+            'price' => 'nullable|min:0,01|max:9999,99',
             'cover_image' => 'nullable|image|max:255',
             'texture_id' => 'nullable|exists:textures,id',
             'brand_id' => 'nullable|exists:brands,id',
             'category_id' => 'required|exists:categories,id',
-            'colors' => 'nullable'
+            'colors' => 'nullable|exists:colors:id'
         ];
     }
 

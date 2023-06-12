@@ -78,21 +78,30 @@
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
-        <div class="form-group">
-            <p>Seleziona i colori:</p>
-            @foreach ($colors as $color)
-                <div style="background-color: {{ $color->hex_value }}">
-                    <input type="checkbox" name="colors[]" value="{{ $color->id }}" class="form-check-input"
-                        {{ in_array($color->id, old('colors', [])) ? 'checked' : '' }}>
-                    <label for="" class="form-check-label">{{ $color->name }}</label>
-                </div>
-            @endforeach
-            @error('colors')
+        <div class="mb-3">
+            <label for="price" class="form-label">Price &euro;</label>
+            <input type="number" step="0.01" value="{{ old('price', 0) }}"
+                class="form-control @error('price') is-invalid @enderror" id="price" name="price" min="0.01"
+                max="9999.99">
+
+            @error('price')
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
-        </div>
-        <button type="submit" class="btn btn-success">Save</button>
-        <button type="reset" class="btn btn-primary">Reset</button>
+            <div class="form-group">
+                <p>Seleziona i colori:</p>
+                @foreach ($colors as $color)
+                    <div style="background-color: {{ $color->hex_value }}">
+                        <input type="checkbox" name="colors[]" value="{{ $color->id }}" class="form-check-input"
+                            {{ in_array($color->id, old('colors', [])) ? 'checked' : '' }}>
+                        <label for="" class="form-check-label">{{ $color->name }}</label>
+                    </div>
+                @endforeach
+                @error('colors')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+            <button type="submit" class="btn btn-success">Save</button>
+            <button type="reset" class="btn btn-primary">Reset</button>
     </form>
     <script src="//js.nicedit.com/nicEdit-latest.js" type="text/javascript"></script>
     <script type="text/javascript">

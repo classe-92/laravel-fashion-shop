@@ -88,23 +88,19 @@
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
+            <div class="mb-3">
+                <label for="price" class="form-label">Price &euro;</label>
+                <input type="number" step="0.01" value="{{ $product->price }}"
+                    class="form-control @error('price') is-invalid @enderror" id="price" name="price" min="0.01"
+                    max="9999.99">
+
+                @error('price')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
             <div class="form-group">
                 <p>Seleziona i Colori:</p>
-                {{-- @foreach ($tags as $tag)
-                    <div>
-                        @if ($errors->any())
-                            <input type="checkbox" name="tags[]" value="{{ $tag->id }}" class="form-check-input"
-                                {{ in_array($tag->id, old('tags', [])) ? 'checked' : '' }}>
-                        @else
-                            <input type="checkbox" name="tags[]" value="{{ $tag->id }}" class="form-check-input"
-                                {{ $post->tags->contains($tag) ? 'checked' : '' }}>
-                        @endif
-                        <label for="" class="form-check-label">{{ $tag->name }}</label>
-                    </div>
-                @endforeach
-                @error('tags')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                @enderror --}}
+
                 <div class="form-group">
                     <p>Seleziona i colori:</p>
                     @foreach ($colors as $color)
