@@ -20,6 +20,8 @@
                 <th scope="col">Name</th>
                 <th scope="col">Image</th>
                 <th scope="col">Category</th>
+                <th scope="col">Brand</th>
+                <th scope="col">Texture</th>
                 <th scope="col">Created</th>
                 <th scope="col">Actions</th>
             </tr>
@@ -34,6 +36,12 @@
                     </td>
                     <td>
                         {{ $product->category ? $product->category->name : 'Senza categoria' }}
+                    </td>
+                    <td>
+                        {{ $product->brand ? $product->brand->name : 'Senza Brand' }}
+                    </td>
+                    <td>
+                        {{ $product->texture ? $product->texture->name : 'Senza texture' }}
                     </td>
                     <td>{{ $product->created_at }}</td>
                     <td>

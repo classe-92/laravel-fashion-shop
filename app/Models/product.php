@@ -22,6 +22,11 @@ class Product extends Model
     {
         return $this->belongsTo(Texture::class);
     }
+
+    public function colors()
+    {
+        return $this->belongsToMany(Color::class);
+    }
 }
 
 //return $this->belongsToMany(Role::class)->withPivot('active', 'created_by');

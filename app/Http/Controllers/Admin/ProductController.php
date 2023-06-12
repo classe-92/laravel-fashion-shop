@@ -37,7 +37,8 @@ class ProductController extends Controller
         $categories = Category::all();
         $brands = Brand::all();
         $textures = Texture::all();
-        return view('admin.products.create', compact('categories', 'brands', 'textures'));
+        $colors = Color::all();
+        return view('admin.products.create', compact('categories', 'brands', 'textures', 'colors'));
     }
 
     /**
@@ -48,7 +49,19 @@ class ProductController extends Controller
      */
     public function store(StoreProductRequest $request)
     {
-        //
+        $data = $request->validated();
+        $slug = Str::slug($request->name, '-');
+        $data['slug'] = $slug;
+        if ($request->has('cover_image')) {
+            $image_path = Storage::put('images', $request->cover_image);
+            $data['cover_image'] = $image_path;
+        }
+        $product = Product::create($data);
+        dd($product);
+        if ($request->has('colors')) {
+            $product->colors()->attach($request->colors);
+        }
+        return redirect()->route('admin.products.show', $product->slug);
     }
 
     /**
@@ -74,11 +87,13 @@ class ProductController extends Controller
         $categories = Category::all();
         $brands = Brand::all();
         $textures = Texture::all();
+        $colors = Color::all();
         $data = [
             'product' => $product,
             'brands' => $brands,
             'categories' => $categories,
-            'textures' => $textures
+            'textures' => $textures,
+            'colors' => $colors
         ];
         return view('admin.products.edit', $data);
     }
@@ -92,8 +107,25 @@ class ProductController extends Controller
      */
     public function update(UpdateProductRequest $request, Product $product)
     {
-        //
+        $data = $request->validated();
+        $slug = Str::slug($request->name, '-');
+        $data['slug'] = $slug;
+        if ($request->has('cover_image')) {
+            if ($product->cover_image) {
+                Storage::delete($product->cover_image);
+            }
+            $image_path = Storage::put('images', $request->cover_image);
+            $data['cover_image'] = $image_path;
+        }
+        $product->update($data);
+        if ($request->has('colors')) {
+            $product->colors()->sync($request->colors);
+        } else {
+            $product->colors()->sync([]);
+        }
+        return redirect()->route('admin.products.show', $product->slug);
     }
+
 
     /**
      * Remove the specified resource from storage.
@@ -104,10 +136,10 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         if ($product->image) {
-            $datogliere = "http://127.0.0.1:8000/storage/";
-            $imagetoremove = str_replace($datogliere, '', $product->image);
+            // $datogliere = "http://127.0.0.1:8000/storage/";
+            // $imagetoremove = str_replace($datogliere, '', $product->image);
             //dd($imagetoremove);
-            Storage::delete($imagetoremove);
+            Storage::delete($product->image);
         }
         $product->delete();
         return redirect()->route('admin.products.index')->with('message', "$product->name deleted successfully.");
