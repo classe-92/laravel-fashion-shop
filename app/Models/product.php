@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     use HasFactory;
-    protected $guarded = [];
+    protected $fillable = ['name', 'cover_image', 'description', 'brand_id', 'category_id', 'texture_id', 'slug'];
 
     public function brand()
     {
@@ -28,6 +28,3 @@ class Product extends Model
         return $this->belongsToMany(Color::class);
     }
 }
-
-//return $this->belongsToMany(Role::class)->withPivot('active', 'created_by');
-//return $this->belongsToMany(Role::class)->withTimestamps();

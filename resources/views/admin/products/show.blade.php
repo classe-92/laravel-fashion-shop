@@ -12,12 +12,11 @@
     <h6>Category: {{ $product->texture ? $product->texture->name : 'Senza texture' }}</h6>
     <img src="{{ asset('storage/' . $product->cover_image) }}" alt="{{ $product->name }}">
     <p>{!! $product->description !!}</p>
-    {{-- @if ($post->tags && count($post->tags) > 0)
+    @if ($product->colors && count($product->colors) > 0)
         <div>
-            @foreach ($post->tags as $tag)
-                <a href="{{ route('admin.tags.show', $tag->slug) }}"
-                    class="badge rounded-pill text-bg-info">{{ $tag->name }}</a>
+            @foreach ($product->colors as $color)
+                <span class="badge rounded-pill" style="background-color: {{ $color->hex_value }}">{{ $color->name }}</span>
             @endforeach
         </div>
-    @endif --}}
+    @endif
 @endsection

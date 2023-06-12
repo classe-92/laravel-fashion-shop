@@ -114,7 +114,7 @@
                                     {{ in_array($color->id, old('colors', [])) ? 'checked' : '' }}>
                             @else
                                 <input type="checkbox" name="colors[]" value="{{ $color->id }}" class="form-check-input"
-                                    {{ $product->colors->containes($color) ? 'checked' : '' }}>
+                                    {{ $product->colors->contains($color) ? 'checked' : '' }}>
                             @endif
 
                             <label for="" class="form-check-label">{{ $color->name }}</label>

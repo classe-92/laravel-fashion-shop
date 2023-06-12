@@ -49,6 +49,7 @@ class ProductController extends Controller
      */
     public function store(StoreProductRequest $request)
     {
+
         $data = $request->validated();
         $slug = Str::slug($request->name, '-');
         $data['slug'] = $slug;
@@ -57,7 +58,7 @@ class ProductController extends Controller
             $data['cover_image'] = $image_path;
         }
         $product = Product::create($data);
-        dd($product);
+
         if ($request->has('colors')) {
             $product->colors()->attach($request->colors);
         }
