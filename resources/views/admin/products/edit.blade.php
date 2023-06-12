@@ -11,7 +11,8 @@
             </ul>
         </div>
     @endif --}}
-    <form action="{{ route('admin.products.update', $product->slug) }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('admin.products.update', $product->slug) }}" method="POST" enctype="multipart/form-data"
+        class="pb-4">
         @csrf
         @method('PUT')
         <div class="mb-3">
@@ -100,11 +101,11 @@
             </div>
             <div class="form-group">
                 <p>Seleziona i Colori:</p>
+                <div class="d-flex flex-wrap align-items-center w-100 py-4">
 
-                <div class="form-group">
-                    <p>Seleziona i colori:</p>
                     @foreach ($colors as $color)
-                        <div style="background-color: {{ $color->hex_value }}">
+                        <div
+                            style="background-color: {{ $color->hex_value }}; width:250px; margin:5px; padding:5px; color:white">
                             @if ($errors->any())
                                 <input type="checkbox" name="colors[]" value="{{ $color->id }}" class="form-check-input"
                                     {{ in_array($color->id, old('colors', [])) ? 'checked' : '' }}>
@@ -116,13 +117,15 @@
                             <label for="" class="form-check-label">{{ $color->name }}</label>
                         </div>
                     @endforeach
-                    @error('colors')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
                 </div>
+                @error('colors')
+                    <div class="invalid-feedback">{{ $message }}
+                    </div>
+                @enderror
             </div>
-            <button type="submit" class="btn btn-success">Save</button>
-            <button type="reset" class="btn btn-primary">Reset</button>
+        </div>
+        <button type="submit" class="btn btn-success">Save</button>
+        <button type="reset" class="btn btn-primary">Reset</button>
     </form>
     <script src="//js.nicedit.com/nicEdit-latest.js" type="text/javascript"></script>
     <script type="text/javascript">

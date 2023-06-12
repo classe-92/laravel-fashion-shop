@@ -11,7 +11,7 @@
                 </ul>
             </div>
             @endif --}}
-    <form action="{{ route('admin.products.store') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('admin.products.store') }}" method="POST" enctype="multipart/form-data" class="pb-4">
         @csrf
         <div class="mb-3">
             <label for="name">Name</label>
@@ -89,13 +89,16 @@
             @enderror
             <div class="form-group">
                 <p>Seleziona i colori:</p>
-                @foreach ($colors as $color)
-                    <div style="background-color: {{ $color->hex_value }}">
-                        <input type="checkbox" name="colors[]" value="{{ $color->id }}" class="form-check-input"
-                            {{ in_array($color->id, old('colors', [])) ? 'checked' : '' }}>
-                        <label for="" class="form-check-label">{{ $color->name }}</label>
-                    </div>
-                @endforeach
+                <div class="d-flex flex-wrap align-items-center w-100 py-4">
+                    @foreach ($colors as $color)
+                        <div
+                            style="background-color: {{ $color->hex_value }}; width:250px; margin:5px; padding:5px; color:white">
+                            <input type="checkbox" name="colors[]" value="{{ $color->id }}" class="form-check-input"
+                                {{ in_array($color->id, old('colors', [])) ? 'checked' : '' }}>
+                            <label for="" class="form-check-label">{{ $color->name }}</label>
+                        </div>
+                    @endforeach
+                </div>
                 @error('colors')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
