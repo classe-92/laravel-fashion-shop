@@ -237,6 +237,12 @@ FILESYSTEM_DISK=public
 # lanciare il comando per creare il simlink
 php artisan storage:link
 
+#salvare
+Storage::put('images', $data['image']); #ritorna il path
+
+#per visualizzare 
+<img src="{{ asset('storage/' . $post->cover_image) }}">
+
 ```
 
 ## Laravel Resource
