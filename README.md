@@ -7,90 +7,25 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## Laravel inizializzazione progetto
+## Vue inizializzazione progetto
 
 ```bash
-#apriamo la cartella parent
-cd your parent_folder_path
+..# 1. Crea repo su git (senza opzioni se non pubblico)
+# 2. Clonare la repo e apri la cartella su vs code e aprire terminale
+# 3. digitare: npm init vue@latest
+# 4. per creare il progetto nella directory corrente mettere solo un  punto
+# 5. nome package lo stesso della cartella poi lasciare tutto come sta
+# 6. dire si all'opzione vue router
+# 7. npm install
+# 8. npm run dev
 
-#creiamo il progetto
-composer create-project --prefer-dist laravel/laravel:^9.2 your_project_name_here
+npm install bootstrap axios @fortawesome/fontawesome-free sass
 
-#entriamo nella cartella del progetto da terminale di vscode
-cd your_project_name
+# eventualmente facciamo vedere fontsource: https://fontsource.org/fonts/montserrat
+npm install @fontsource/montserrat
 
-#apriamo la cartella in vscode
-code . -r 
-
-#Installare pacchetto per update migration:
-composer require doctrine/dbal
-
-#scaricare pacchetto breeze  (opzione blade)
-composer require laravel/breeze:^1.18.0 --dev
-
-#installare breeze (opzione blade)
-php artisan breeze:install
-
-
-#installiamo il pacchetto di inizializzazione ui con bootstrap
-composer require pacificdev/laravel_9_preset
-
-#installiamo il pacchetto 
-php artisan preset:ui bootstrap --auth
-
-#modifichiamo app/Providers/RouteServiceProvider.php con la nostra rotta dove andare dopo il login
-public const HOME = '/admin';
-
-#lanciamo npm install
-npm install
-
-#installiamo fonawesome se serve
-npm install --save @fortawesome/fontawesome-free
-
-#modifichiamo vite.config.js per aggiungere alias fontawesome
-...
- '~@fortawesome': path.resolve(__dirname, 'node_modules/@fortawesome'),
-...
-#creiamo le cartelle e i file necessari
-#dentro resources:
-fonts
-img
-
-#dentro resources>views:
-layouts > layout.blade.php
-partials > header.blade.php e footer.blade.php
-
-#dentro resources>scss:
-partials
-(inseriamo dentro partials almeno un file _varaibles.scss) 
-
-#copiamo la cartella dei webfont di fontawesome dentro fonts
-
-#editiamo il file app.scss
-@use './partials/variables' as *;
-
-$fa-font-path: "../fonts/webfonts" !default;
-
-@import "~@fortawesome/fontawesome-free/scss/fontawesome";
-@import "~@fortawesome/fontawesome-free/scss/regular";
-@import "~@fortawesome/fontawesome-free/scss/solid";
-@import "~@fortawesome/fontawesome-free/scss/brands";
-
-@import "~bootstrap/scss/bootstrap";
-
-#prepara il file del layout e la welcome
-
-#creare database
-#inserire credenziali nel file .env
-#php artisan migrate per lanciare le migration già presenti che creeranno la tabella utenti ecc
-
-#verifichiamo che tutto funzioni:
-
-npm run dev
-
-php artisan serve
-
-#registriamo il primo user e proviamo la login
+# copiamo la cartella webfonts da fontawesome in node-modules in assets
+# inizialmente commentiamo l'importazione e l'uso del router di view dal main js
 
 ```
 ## Pubblicare su github
