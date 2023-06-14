@@ -10,7 +10,7 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $products = Product::with('brand', 'category')->paginate(5);
+        $products = Product::with('brand', 'category')->paginate(10);
         return response()->json([
             'success' => true,
             'results' => $products
