@@ -15,9 +15,9 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', function () {
-    return view('home');
-})->name('home');
+// Route::get('/', function () {
+//     return view('home');
+// })->name('home');
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
@@ -40,5 +40,5 @@ require __DIR__ . '/auth.php';
 
 //la rotta di fallback deve esere sempre l'ultima
 Route::fallback(function () {
-    return redirect()->route('home');
+    return redirect()->route('admin.dashboard');
 });

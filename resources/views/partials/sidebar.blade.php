@@ -2,11 +2,11 @@
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href={{ url('/') }}>
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="http://localhost:5174">
         <div class="sidebar-brand-icon">
-            <i class="fa-regular fa-newspaper"></i>
+            <i class="fa-solid fa-store"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">Tomorrow</div>
+        <div class="sidebar-brand-text mx-3">MyColors</div>
     </a>
 
     <!-- Divider -->
