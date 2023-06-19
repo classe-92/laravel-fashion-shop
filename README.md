@@ -299,6 +299,37 @@ APP_URL=http://localhost:8000
 APP_FRONTEND_URL=http://localhost:5174
 
 ```
+## MAIL
+```bash
+#scarico la libreria guzzle
+composer require guzzlehttp/guzzle
+
+#compiliamo il file -env con le nostre credenziali
+
+#genera oggetto mailable
+php artisan make:mail NewContact
+
+#creiamo la view per la mail con i dati del messaggio che sarà inviato
+
+#creiamo model - controller - migration e seeder per la nuova entità
+
+php artisan make:model Lead -rcm
+#spostiamo il controller sotto Api e manteniamo solo la funzione store
+#nella quale dopo aver salvato il lead invieremo la mail
+
+...
+Mail::to('info@fashionshop.com')->send(new NewContact($new_lead));
+...
+
+
+#completiamo e lanciamo la migration e lanciamola
+
+#creiamo la rotta per la store in route api.php
+#es.
+Route::post('/contacts', [LeadController::class, 'store']);
+
+```
+
 
 - **[Vehikl](https://vehikl.com/)**
 - **[Tighten Co.](https://tighten.co)**
